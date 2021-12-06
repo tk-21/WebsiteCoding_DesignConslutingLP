@@ -1,0 +1,56 @@
+/* font-family: din-condensed,sans-serif;
+font-weight: 400;
+font-style: normal; */
+
+$blue: #2a84ac;
+$lightBlue: rgba(42, 132, 172, 0.38);
+
+@font-face {
+  font-family: "NeueHaasUnicaW1G-Regular";
+  src: url("//db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.eot");
+  src: url("//db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.svg#NeueHaasUnicaW1G-Regular")
+      format("svg");
+}
+
+@mixin pabs($top: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@function vw($px, $base: 1280) {
+  $value: ($px / $base) * 100vw;
+  @return $value;
+}
+
+// レイアウト幅
+$layout-width-inner: 1004px;
+
+// ブレークポイントを定義
+$breakpoints: (
+  "sp": "(max-width: 767px)",
+  "tab": "(max-width: #{$layout-width-inner - 1px})",
+  "pc": "(min-width: #{$layout-width-inner})",
+);
+
+// メディアクエリー
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
